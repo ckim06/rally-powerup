@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="no-js" ng-app="app">
+<head>
+  <title>Rally Powerup</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
+  <script src="https://trello.com/power-ups/power-up.min.js"></script>
+</head>
+<body ng-controller="tasksController as vm">
+  <ul>
+    <li ng-repeat="task in vm.tasks">
+      <input type="checkbox" id="{{task._refObjectUUID}}" /><label for="{{task._refObjectUUID}}">{{task.Name}}</label>
+    </li>
+  </ul>
+  <script src="/web/build/bundle.js"></script>
+</body>
+</html>
