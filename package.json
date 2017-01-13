@@ -22,5 +22,8 @@
         "q": "^1.4.1",
         "rally": "^2.1.2",
         "webpack": "^1.14.0"
+    },
+    "scripts" : {
+      "start": "node server.js"
     }
 }
