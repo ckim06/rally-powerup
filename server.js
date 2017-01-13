@@ -6,10 +6,15 @@ var router = express.Router();
 var rally = require('rally');
 var Q = require('q');
 
-
+var apikey = '';
+if(apiKeys){
+   apikey = apiKeys.RALLY_API_KEY;
+} else {
+  apikey = process.env.RALLY_API_KEY;
+}
 
 var restApi = rally({
-  apiKey: apiKeys.RALLY_API_KEY,
+  apiKey: apikey,
   server: 'https://rally1.rallydev.com'
 });
 
