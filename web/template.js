@@ -22,7 +22,7 @@ TrelloPowerUp.initialize({
         ],
         content: {
           type: 'iframe',
-          url: t.signUrl('./rally-data.html', { ref: 'you can pass your section args here' })
+          url: t.signUrl('./web/index.html', { ref: 'you can pass your section args here' })
         }
       }];
   }
