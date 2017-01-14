@@ -24,6 +24,6 @@
         "webpack": "^1.14.0"
     },
     "scripts" : {
-      "start": "node server.js"
+      "start": "webpack && node server.js"
     }
 }
