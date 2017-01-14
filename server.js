@@ -1,14 +1,20 @@
 var express = require('express');
-var apiKeys = require('./API_KEYS.js');
 var bodyParser = require('body-parser');
 var app = express()
 var router = express.Router();
 var rally = require('rally');
 var Q = require('q');
 
+var apiKeys;
+try {
+  apiKeys = require('./API_KEYS.js');
+} catch (e) {
+
+}
+
 var apikey = '';
-if(apiKeys){
-   apikey = apiKeys.RALLY_API_KEY;
+if (apiKeys) {
+  apikey = apiKeys.RALLY_API_KEY;
 } else {
   apikey = process.env.RALLY_API_KEY;
 }
