@@ -9,42 +9,44 @@ function TasksController(tasksService) {
 
   var error = function (response) {
     console.log(response);
+    vm.loader = false;
   }
 
   function nameCallback(data) {
     var success = function (response) {
         vm.tasks = response.data;
+        vm.loader = false;
       }
       // emdash
     id = data.name.split('—')[0].trim();
     tasksService.getTasks(id).then(success, error);
   }
 
+  vm.loader = true;
   // nameCallback({
   //   name: '66163950224—'
   // });
-t.card('name').then(nameCallback, error);
+  t.card('name').then(nameCallback, error);
 
 
   var updateSuccess = function (response) {
-    vm.tasks.forEach(function (task) {
+    vm.loader = false;
+    vm.tasks.forEach(function (task, i) {
       if (task.ObjectID === response.data.ObjectID) {
-        task = response.data;
+        vm.tasks[i] = response.data;
       }
-    });
-    vm.tasks.find(function (element) {
-      return element.ObjectID == response.data.ObjectID;
     });
   };
 
   vm.updateStatus = function (task) {
-
+    vm.loader = true;
     tasksService.updateTask({
-      'State': task.State
+      'State': vm.taskChecked
     }, task.ObjectID).then(updateSuccess, error);
   };
 
   vm.updateHours = function (task) {
+    vm.loader = true;
     tasksService.updateTask({
       'Actuals': task.Actuals
     }, task.ObjectID).then(updateSuccess, error);
