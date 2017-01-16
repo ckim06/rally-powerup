@@ -20,10 +20,10 @@ function TasksController(tasksService) {
     tasksService.getTasks(id).then(success, error);
   }
 
-  nameCallback({
-    name: '66163950224—'
-  });
-  //t.card('name').then(nameCallback, error);
+  // nameCallback({
+  //   name: '66163950224—'
+  // });
+t.card('name').then(nameCallback, error);
 
 
   var updateSuccess = function (response) {
