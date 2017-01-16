@@ -7,23 +7,48 @@ function TasksController(tasksService) {
   var t = TrelloPowerUp.iframe();
   var id;
 
-  var success = function (response) {
-    vm.tasks = response.data;
-    //vm.test = JSON.parse(response).Tasks;
-  }
-
   var error = function (response) {
     console.log(response);
   }
 
   function nameCallback(data) {
-    // emdash
+    var success = function (response) {
+        vm.tasks = response.data;
+      }
+      // emdash
     id = data.name.split('—')[0].trim();
     tasksService.getTasks(id).then(success, error);
   }
 
-  t.card('name').then(nameCallback, error);
+  nameCallback({
+    name: '66163950224—'
+  });
+  //t.card('name').then(nameCallback, error);
 
+
+  var updateSuccess = function (response) {
+    vm.tasks.forEach(function (task) {
+      if (task.ObjectID === response.data.ObjectID) {
+        task = response.data;
+      }
+    });
+    vm.tasks.find(function (element) {
+      return element.ObjectID == response.data.ObjectID;
+    });
+  };
+
+  vm.updateStatus = function (task) {
+
+    tasksService.updateTask({
+      'State': task.State
+    }, task.ObjectID).then(updateSuccess, error);
+  };
+
+  vm.updateHours = function (task) {
+    tasksService.updateTask({
+      'Actuals': task.Actuals
+    }, task.ObjectID).then(updateSuccess, error);
+  }
 
 }
 

@@ -11,7 +11,17 @@ function TasksService($http) {
     });
 
     return promise;
-  }
+  };
+
+  vm.updateTask = function (task, ref) {
+    var promise = $http({
+      method: 'PUT',
+      data: task,
+      url: '/api/defect/' + ref
+    });
+
+    return promise;
+  };
 }
 
 module.exports = TasksService;

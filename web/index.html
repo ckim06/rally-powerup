@@ -8,11 +8,18 @@
   <script src="https://trello.com/power-ups/power-up.min.js"></script>
 </head>
 <body ng-controller="tasksController as vm">
-  <ul>
-    <li ng-repeat="task in vm.tasks">
-      <input type="checkbox" id="{{task._refObjectUUID}}" /><label for="{{task._refObjectUUID}}">{{task.Name}}</label>
-    </li>
-  </ul>
+  <table>
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <!--<th>Hours</th>-->
+    </tr>
+    <tr ng-repeat="task in vm.tasks">
+      <td><input type="checkbox" id="{{task.ObjectID}}" ng-change="vm.updateStatus(task)" ng-model="task.State" ng-selected="task.State === 'Completed'"/></td>
+      <td><label for="{{task.ObjectID}}">{{task.Name}}</label></td>
+      <!--<td><input type="number" ng-change="vm.updateHours(task)" ng-model="task.Actuals"/></td> -->
+  </table>
+
   <script src="/web/build/bundle.js"></script>
 </body>
 </html>

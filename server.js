@@ -41,7 +41,7 @@ router.route('/tasks/:ref')
   .get(function (req, res) {
     var data = {
       ref: '/HierarchicalRequirement/' + req.params.ref + '/Tasks',
-      fetch: ['Name']
+      fetch: ['ObjectID', 'Name', 'Actuals', 'State']
     };
 
     restApi.get(data).then(function (data) {
@@ -51,20 +51,20 @@ router.route('/tasks/:ref')
     });
   });
 
-router.route('/defect')
+router.route('/defect/:ref')
   .put(function (req, res) {
+    if(req.body.State){
+      req.body.State = 'Completed';
+    } else {
+      req.body.State = 'In-Progress';
+    }
     var data = {
-      ref: {
-        _ref: req.body._ref
-      },
-      data: {
-        Actuals: req.body.Actuals
-      },
-      fetch: ['FormattedID', 'Name', 'Actuals'],
+      ref: '/Task/' +req.params.ref,
+      data: req.body,
+      fetch: ['ObjectID', 'Name', 'Actuals', 'State'],
 
       requestOptions: {}
     };
-
     restApi.update(data, function (error, result) {
       if (error) {
         res.json(error);
