@@ -14,7 +14,7 @@ function TasksController(tasksService) {
     vm.loader = false;
   }
 
-  function nameCallback(data) {
+  function descCallback(data) {
     var success = function (response) {
         vm.loader = false;
         if (response.data.errors) {
@@ -27,15 +27,15 @@ function TasksController(tasksService) {
         }
       }
       // emdash
-    id = data.name.split('—')[0].trim();
-    tasksService.getTasks(id).then(success, error);
+    var ticketData = JSON.parse(data.desc);
+    tasksService.getTasks(ticketData.id).then(success, error);
   }
 
   vm.loader = true;
-  // nameCallback({
-  //   name: '66163950240'
+  // descCallback({
+  //   desc: '66163950240'
   // });
-t.card('name').then(nameCallback, error);
+t.card('desc').then(descCallback, error);
 
 
   var updateSuccess = function (response) {
