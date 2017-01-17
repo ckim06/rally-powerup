@@ -26,14 +26,14 @@ function TasksController(tasksService) {
           }
         }
       }
-      // emdash
     var ticketData = JSON.parse(data.desc);
-    tasksService.getTasks(ticketData.id).then(success, error);
+    id = ticketData.id;
+    tasksService.getTasks(id).then(success, error);
   }
 
   vm.loader = true;
   // descCallback({
-  //   desc: '66163950240'
+  //   desc: JSON.stringify({'id':'66163950240'})
   // });
 t.card('desc').then(descCallback, error);
 
@@ -62,6 +62,22 @@ t.card('desc').then(descCallback, error);
     }, task.ObjectID).then(updateSuccess, error);
   }
 
+
+  vm.addNewTask = function(){
+    function newTaskSuccess(response) {
+      vm.loader = false;
+      if(response.errors){
+        console.error(response.errors);
+      } else {
+          vm.tasks.push(response.data);
+      }
+
+    }
+    vm.loader = true;
+    tasksService.addTask({
+      'Name': vm.newTask
+    }, id).then(newTaskSuccess, error);
+  }
 }
 
 module.exports = TasksController;

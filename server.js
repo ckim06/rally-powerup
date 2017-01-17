@@ -49,6 +49,20 @@ router.route('/tasks/:ref')
     }, function (err) {
       res.json(err);
     });
+  })
+  .post(function (req, res){
+    console.log(req.body);
+    restApi.create({
+      'type':'Task',
+      'data': {
+        'Name': req.body.Name,
+        'WorkProduct': req.params.ref
+      }
+    }).then(function (data) {
+      res.json(data.Object);
+    }, function (err) {
+      res.json(err);
+    });
   });
 
 router.route('/defect/:ref')

@@ -22,6 +22,16 @@ function TasksService($http) {
 
     return promise;
   };
+
+  vm.addTask = function(name, ref) {
+    var promise = $http({
+      method: 'POST',
+      data: name,
+      url: '/api/tasks/' + ref
+    });
+
+    return promise;
+  }
 }
 
 module.exports = TasksService;

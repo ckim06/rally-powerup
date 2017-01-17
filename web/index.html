@@ -25,6 +25,13 @@
       margin:0;
       padding:0;
     }
+    #newTaskInput{
+      display:inline-block;
+    }
+
+    #addNewTaskButton{
+      margin-left:10px;
+    }
   </style>
 </head>
 
@@ -33,7 +40,9 @@
     <li ng-repeat="task in vm.tasks">
       <label for="{{task.ObjectID}}"><input type="checkbox" id="{{task.ObjectID}}" ng-change="vm.updateStatus(task)" ng-model="task.State" ng-checked="task.State" ng-true-value="'Completed'" ng-false-value="'In-Progress'"/> {{task.Name}}</label>
     </li>
+    <li><input type="text" id="newTaskInput" ng-model="vm.newTask" /><button class="mod-primary" id="addNewTaskButton" ng-click="vm.addNewTask()">Add New Task</button></li>
   </ul>
+
   <div class="no-tasks" ng-show="vm.noTasks">No tasks for this card.</div>
 
   <script src="/web/build/bundle.js"></script>
