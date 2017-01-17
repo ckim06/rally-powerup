@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" ng-app="app">
+
 <head>
   <title>Rally Powerup</title>
   <meta charset="UTF-8">
@@ -8,31 +9,35 @@
   <script src="https://trello.com/power-ups/power-up.min.js"></script>
 
   <style>
-  .loader{
-    position:absolute;
-    width:100%;
-    height: 100%;
-    z-index:100;
-    opacity:.3;
-    top:0;
-    left:0;
-    background-color:#000;
-  }
+    .loader {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      opacity: .3;
+      top: 0;
+      left: 0;
+      background-color: #000;
+    }
 
-  ul{
-    list-style:none;
-  }
-
+    ul {
+      list-style: none;
+      margin:0;
+      padding:0;
+    }
   </style>
 </head>
+
 <body ng-controller="tasksController as vm">
-<ul>
+  <ul ng-hide="vm.noTasks">
     <li ng-repeat="task in vm.tasks">
-      <label for="{{task.ObjectID}}"><input type="checkbox" id="{{task.ObjectID}}" ng-change="vm.updateStatus(task)" ng-model="vm.taskChecked" ng-checked="task.State === 'Completed'"/> {{task.Name}}</label></td>
-</li>
-</ul>
+      <label for="{{task.ObjectID}}"><input type="checkbox" id="{{task.ObjectID}}" ng-change="vm.updateStatus(task)" ng-model="vm.taskChecked" ng-checked="task.State === 'Completed'"/> {{task.Name}}</label>
+    </li>
+  </ul>
+  <div class="no-tasks" ng-show="vm.noTasks">No tasks for this card.</div>
 
   <script src="/web/build/bundle.js"></script>
   <div class="loader" ng-show="vm.loader"></div>
 </body>
+
 </html>

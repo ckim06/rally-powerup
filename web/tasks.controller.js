@@ -7,6 +7,8 @@ function TasksController(tasksService) {
   var t = TrelloPowerUp.iframe();
   var id;
 
+  vm.noTasks = false;
+
   var error = function (response) {
     console.log(response);
     vm.loader = false;
@@ -16,6 +18,10 @@ function TasksController(tasksService) {
     var success = function (response) {
         vm.tasks = response.data;
         vm.loader = false;
+
+        if(vm.tasks.length === 0){
+          vm.noTasks = true;
+        }
       }
       // emdash
     id = data.name.split('—')[0].trim();

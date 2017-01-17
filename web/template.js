@@ -18,7 +18,7 @@ TrelloPowerUp.initialize({
         icon: GRAY_ICON,
         title: 'Rally',
         claimed:[
-          'https://power-up-trello.herokuapp.com/rally-data.html'
+          'https://power-up-trello.herokuapp.com/web/index.html'
         ],
         content: {
           type: 'iframe',
