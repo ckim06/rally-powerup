@@ -26,7 +26,7 @@ function TasksController(tasksService) {
           }
         }
       }
-    var ticketData = JSON.parse(data.desc.substring(0, data.desc.lastIndexOf('}')));
+    var ticketData = JSON.parse(data.desc.substring(0, data.desc.lastIndexOf('}') + 1));
     id = ticketData.id;
     tasksService.getTasks(id).then(success, error);
   }
