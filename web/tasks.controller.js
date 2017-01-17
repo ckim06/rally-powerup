@@ -32,10 +32,10 @@ function TasksController(tasksService) {
   }
 
   vm.loader = true;
-  nameCallback({
-    name: '66163950240'
-  });
- //t.card('name').then(nameCallback, error);
+  // nameCallback({
+  //   name: '66163950240'
+  // });
+t.card('name').then(nameCallback, error);
 
 
   var updateSuccess = function (response) {
