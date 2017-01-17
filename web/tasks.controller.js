@@ -16,11 +16,14 @@ function TasksController(tasksService) {
 
   function nameCallback(data) {
     var success = function (response) {
-        vm.tasks = response.data;
         vm.loader = false;
-
-        if(vm.tasks.length === 0){
+        if (response.data.errors) {
           vm.noTasks = true;
+        } else {
+          vm.tasks = response.data;
+          if (vm.tasks.length === 0) {
+            vm.noTasks = true;
+          }
         }
       }
       // emdash
@@ -30,7 +33,7 @@ function TasksController(tasksService) {
 
   vm.loader = true;
   // nameCallback({
-  //   name: '66163950224—'
+  //   name: '73256422292—'
   // });
   t.card('name').then(nameCallback, error);
 
