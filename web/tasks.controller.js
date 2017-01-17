@@ -32,10 +32,10 @@ function TasksController(tasksService) {
   }
 
   vm.loader = true;
-  // nameCallback({
-  //   name: '73256422292—'
-  // });
-  t.card('name').then(nameCallback, error);
+  nameCallback({
+    name: '66163950240'
+  });
+ //t.card('name').then(nameCallback, error);
 
 
   var updateSuccess = function (response) {
@@ -49,8 +49,9 @@ function TasksController(tasksService) {
 
   vm.updateStatus = function (task) {
     vm.loader = true;
+
     tasksService.updateTask({
-      'State': vm.taskChecked
+      'State': task.State
     }, task.ObjectID).then(updateSuccess, error);
   };
 

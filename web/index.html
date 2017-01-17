@@ -31,7 +31,7 @@
 <body ng-controller="tasksController as vm">
   <ul ng-hide="vm.noTasks">
     <li ng-repeat="task in vm.tasks">
-      <label for="{{task.ObjectID}}"><input type="checkbox" id="{{task.ObjectID}}" ng-change="vm.updateStatus(task)" ng-model="vm.taskChecked" ng-checked="task.State === 'Completed'"/> {{task.Name}}</label>
+      <label for="{{task.ObjectID}}"><input type="checkbox" id="{{task.ObjectID}}" ng-change="vm.updateStatus(task)" ng-model="task.State" ng-checked="task.State" ng-true-value="'Completed'" ng-false-value="'In-Progress'"/> {{task.Name}}</label>
     </li>
   </ul>
   <div class="no-tasks" ng-show="vm.noTasks">No tasks for this card.</div>

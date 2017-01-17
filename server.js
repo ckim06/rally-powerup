@@ -53,11 +53,6 @@ router.route('/tasks/:ref')
 
 router.route('/defect/:ref')
   .put(function (req, res) {
-    if(req.body.State){
-      req.body.State = 'Completed';
-    } else {
-      req.body.State = 'In-Progress';
-    }
     var data = {
       ref: '/Task/' +req.params.ref,
       data: req.body,
