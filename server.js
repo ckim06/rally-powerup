@@ -56,6 +56,7 @@ router.route('/tasks/:ref')
       'type':'Task',
       'data': {
         'Name': req.body.Name,
+        'Estimate': req.body.Estimate,
         'WorkProduct': req.params.ref
       }
     }).then(function (data) {

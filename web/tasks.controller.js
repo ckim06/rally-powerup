@@ -75,7 +75,8 @@ t.card('desc').then(descCallback, error);
     }
     vm.loader = true;
     tasksService.addTask({
-      'Name': vm.newTask
+      'Name': vm.newTask,
+      'Estimate':vm.estHours
     }, id).then(newTaskSuccess, error);
   }
 }

@@ -27,7 +27,11 @@
     }
     #newTaskInput{
       display:inline-block;
-      width:60%;
+      width:40%;
+    }
+    #estHours{
+      width:20%;
+      margin-left:10px;
     }
 
     #addNewTaskButton{
@@ -41,7 +45,7 @@
     <li ng-repeat="task in vm.tasks">
       <label for="{{task.ObjectID}}"><input type="checkbox" id="{{task.ObjectID}}" ng-change="vm.updateStatus(task)" ng-model="task.State" ng-checked="task.State" ng-true-value="'Completed'" ng-false-value="'In-Progress'"/> {{task.Name}}</label>
     </li>
-    <li><input type="text" id="newTaskInput" ng-model="vm.newTask" /><button class="mod-primary" id="addNewTaskButton" ng-click="vm.addNewTask()">Add New Task</button></li>
+    <li><input type="text" id="newTaskInput" ng-model="vm.newTask" placeholder="Name" /><input id="estHours" placeholder="Hours" type="number" ng-model="vm.estHours" /><button class="mod-primary" id="addNewTaskButton" ng-click="vm.addNewTask()">Add New Task</button></li>
   </ul>
 
   <div class="no-tasks" ng-show="vm.noTasks">No tasks for this card.</div>
