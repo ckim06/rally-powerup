@@ -16,16 +16,16 @@ function TasksController(tasksService) {
 
   function descCallback(data) {
     var success = function (response) {
-        vm.loader = false;
-        if (response.data.errors) {
+      vm.loader = false;
+      if (response.data.errors) {
+        vm.noTasks = true;
+      } else {
+        vm.tasks = response.data;
+        if (vm.tasks.length === 0) {
           vm.noTasks = true;
-        } else {
-          vm.tasks = response.data;
-          if (vm.tasks.length === 0) {
-            vm.noTasks = true;
-          }
         }
       }
+    }
     var ticketData = JSON.parse(data.desc.substring(0, data.desc.lastIndexOf('}') + 1));
     id = ticketData.id;
     tasksService.getTasks(id).then(success, error);
@@ -35,7 +35,7 @@ function TasksController(tasksService) {
   // descCallback({
   //   desc: JSON.stringify({'id':'66163950240'})
   // });
-t.card('desc').then(descCallback, error);
+  t.card('desc').then(descCallback, error);
 
 
   var updateSuccess = function (response) {
@@ -63,20 +63,22 @@ t.card('desc').then(descCallback, error);
   }
 
 
-  vm.addNewTask = function(){
+  vm.addNewTask = function () {
     function newTaskSuccess(response) {
       vm.loader = false;
-      if(response.errors){
+      if (response.errors) {
         console.error(response.errors);
       } else {
-          vm.tasks.push(response.data);
+        vm.newTask = '';
+        vm.estHours = '';
+        vm.tasks.push(response.data);
       }
 
     }
     vm.loader = true;
     tasksService.addTask({
       'Name': vm.newTask,
-      'Estimate':vm.estHours
+      'Estimate': vm.estHours
     }, id).then(newTaskSuccess, error);
   }
 }

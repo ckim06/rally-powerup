@@ -22,20 +22,23 @@
 
     ul {
       list-style: none;
-      margin:0;
-      padding:0;
-    }
-    #newTaskInput{
-      display:inline-block;
-      width:40%;
-    }
-    #estHours{
-      width:20%;
-      margin-left:10px;
+      margin: 0;
+      padding: 0;
     }
 
-    #addNewTaskButton{
-      margin-left:10px;
+    #newTaskInput {
+      display: inline-block;
+      width: 45%;
+    }
+
+    #estHours {
+      display: inline-block;
+      width: 15%;
+      margin-left: 10px;
+    }
+
+    #addNewTaskButton {
+      margin-left: 10px;
     }
   </style>
 </head>
@@ -45,9 +48,14 @@
     <li ng-repeat="task in vm.tasks">
       <label for="{{task.ObjectID}}"><input type="checkbox" id="{{task.ObjectID}}" ng-change="vm.updateStatus(task)" ng-model="task.State" ng-checked="task.State" ng-true-value="'Completed'" ng-false-value="'In-Progress'"/> {{task.Name}}</label>
     </li>
-    <li><input type="text" id="newTaskInput" ng-model="vm.newTask" placeholder="Name" /><input id="estHours" placeholder="Hours" type="number" ng-model="vm.estHours" /><button class="mod-primary" id="addNewTaskButton" ng-click="vm.addNewTask()">Add New Task</button></li>
-  </ul>
 
+  </ul>
+  <div>
+    <h3>Add Task</h3>
+    <input type="text" id="newTaskInput" ng-model="vm.newTask" placeholder="Name" />
+    <input id="estHours" placeholder="Hours" type="number" ng-model="vm.estHours" />
+    <button class="mod-primary" id="addNewTaskButton" ng-click="vm.addNewTask()">Add New Task</button>
+  </div>
   <div class="no-tasks" ng-show="vm.noTasks">No tasks for this card.</div>
 
   <script src="/web/build/bundle.js"></script>
