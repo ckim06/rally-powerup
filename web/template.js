@@ -16,7 +16,7 @@ TrelloPowerUp.initialize({
       return [{
         id: 'rally',
         icon: GRAY_ICON,
-        title: 'Tasks',
+        title: 'Rally Tasks',
         claimed:[
           'https://power-up-trello.herokuapp.com/web/index.html'
         ],
