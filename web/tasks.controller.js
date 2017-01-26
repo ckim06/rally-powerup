@@ -79,12 +79,15 @@ function TasksController(tasksService) {
 
     tasksService.memberMap().then(function (data) {
       var memberMap = JSON.parse(data.data);
+      var rallyOwnerId = _.findKey(memberMap, function (key) {
+        return key === memberId;
+      });
 
       tasksService.addTask({
         'Name': vm.newTask,
         'Estimate': vm.estHours,
         owner: {
-          'ObjectID': _.findKey(memberMap, memberId)
+          'ObjectID': rallyOwnerId
         }
       }, id).then(newTaskSuccess, error);
 
