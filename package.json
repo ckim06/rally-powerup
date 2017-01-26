@@ -1,29 +1,30 @@
 {
-    "name": "rally-powerup",
-    "version": "0.2.1",
-    "description": "Rally Power UP",
-    "main": "index.html",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:ckim06/rally-powerup.git"
-    },
-    "devDependencies": {
-        "angular": "^1.6.1",
-        "body-parser": "^1.15.2",
-        "express": "^4.14.0",
-        "q": "^1.4.1",
-        "rally": "^2.1.2",
-        "webpack": "^1.14.0"
-    },
-    "dependencies": {
-        "angular": "^1.6.1",
-        "body-parser": "^1.15.2",
-        "express": "^4.14.0",
-        "q": "^1.4.1",
-        "rally": "^2.1.2",
-        "webpack": "^1.14.0"
-    },
-    "scripts" : {
-      "start": "webpack && node server.js"
-    }
+  "name": "rally-powerup",
+  "version": "0.2.1",
+  "description": "Rally Power UP",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ckim06/rally-powerup.git"
+  },
+  "devDependencies": {
+    "angular": "^1.6.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "q": "^1.4.1",
+    "rally": "^2.1.2",
+    "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "angular": "^1.6.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.17.4",
+    "q": "^1.4.1",
+    "rally": "^2.1.2",
+    "webpack": "^1.14.0"
+  },
+  "scripts": {
+    "start": "webpack && node server.js"
+  }
 }

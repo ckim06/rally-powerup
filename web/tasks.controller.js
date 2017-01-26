@@ -1,8 +1,8 @@
 'use strict';
+var _ = require('lodash');
+TasksController.$inject = ['tasksService', 'memberMap'];
 
-TasksController.$inject = ['tasksService'];
-
-function TasksController(tasksService) {
+function TasksController(tasksService, memberMap) {
   var vm = this;
   var t = TrelloPowerUp.iframe();
   var id;
@@ -35,7 +35,7 @@ function TasksController(tasksService) {
   // descCallback({
   //   desc: JSON.stringify({'id':'66163950240'})
   // });
-  t.card('desc').then(descCallback, error);
+   t.card('desc').then(descCallback, error);
 
 
   var updateSuccess = function (response) {
@@ -73,13 +73,22 @@ function TasksController(tasksService) {
         vm.estHours = '';
         vm.tasks.push(response.data);
       }
+    }
 
+    function membersCallback(data){
+      tasksService.addTask({
+        'Name': vm.newTask,
+        'Estimate': vm.estHours,
+        owner: {
+          'ObjectID': _.findKey(memberMap, data.members)
+        }
+      }, id).then(newTaskSuccess, error);
     }
     vm.loader = true;
-    tasksService.addTask({
-      'Name': vm.newTask,
-      'Estimate': vm.estHours
-    }, id).then(newTaskSuccess, error);
+    t.card('members').then(membersCallback, error);
+
+
+
   }
 }
 

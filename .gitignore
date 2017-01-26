@@ -66,3 +66,4 @@ node_modules
 
 web/build
 API_KEYS.js
+web/memberMap.js

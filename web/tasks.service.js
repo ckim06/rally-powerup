@@ -23,10 +23,10 @@ function TasksService($http) {
     return promise;
   };
 
-  vm.addTask = function(name, ref) {
+  vm.addTask = function(data, ref) {
     var promise = $http({
       method: 'POST',
-      data: name,
+      data: data,
       url: '/api/tasks/' + ref
     });
 
