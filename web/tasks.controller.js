@@ -78,7 +78,7 @@ function TasksController(tasksService) {
 
 
     tasksService.memberMap().then(function (data) {
-      var memberMap = JSON.parse(data.memberMap);
+      var memberMap = JSON.parse(data.data);
 
       tasksService.addTask({
         'Name': vm.newTask,
