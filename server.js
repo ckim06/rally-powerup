@@ -58,7 +58,6 @@ router.route('/tasks/:ref')
     restApi.create({
       'type':'Task',
       'data': req.body
-      }
     }).then(function (data) {
       res.json(data.Object);
     }, function (err) {
