@@ -54,12 +54,10 @@ router.route('/tasks/:ref')
   })
   .post(function (req, res){
     console.log(req.body);
+    req.body.WorkProduct = req.params.ref;
     restApi.create({
       'type':'Task',
-      'data': {
-        'Name': req.body.Name,
-        'Estimate': req.body.Estimate,
-        'WorkProduct': req.params.ref
+      'data': req.body
       }
     }).then(function (data) {
       res.json(data.Object);
