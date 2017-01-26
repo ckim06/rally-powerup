@@ -84,7 +84,7 @@ function TasksController(tasksService) {
         'Name': vm.newTask,
         'Estimate': vm.estHours,
         owner: {
-          'ObjectID': _.findKey(memberMap, memberId);
+          'ObjectID': _.findKey(memberMap, memberId)
         }
       }, id).then(newTaskSuccess, error);
 
