@@ -76,18 +76,21 @@ function TasksController(tasksService) {
     }
 
     function membersCallback(data){
-      tasksService.addTask({
-        'Name': vm.newTask,
-        'Estimate': vm.estHours,
-        owner: {
-          'ObjectID': _.findKey(memberMap, data.members)
-        }
-      }, id).then(newTaskSuccess, error);
+      tasksService.memberMap().then(function(memberMap){
+
+        tasksService.addTask({
+          'Name': vm.newTask,
+          'Estimate': vm.estHours,
+          owner: {
+            'ObjectID': _.findKey(memberMap, data.members)
+          }
+        }, id).then(newTaskSuccess, error);
+
+      });
+
     }
     vm.loader = true;
     t.card('members').then(membersCallback, error);
-
-
 
   }
 }

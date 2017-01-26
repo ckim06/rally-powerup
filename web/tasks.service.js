@@ -32,6 +32,15 @@ function TasksService($http) {
 
     return promise;
   }
+
+  vm.memberMap = function(data){
+    var promise = $http({
+      method: 'GET',
+      url: '/api/member-map/'
+    });
+
+    return promise;
+  }
 }
 
 module.exports = TasksService;
