@@ -3,11 +3,13 @@ var bodyParser = require('body-parser');
 var app = express()
 var router = express.Router();
 var rally = require('rally');
+
 var Q = require('q');
 
-var apiKeys;
+var apiKeys, memberMap;
 try {
   apiKeys = require('./API_KEYS.js');
+  memberMap = require('./memberMap.js');
 } catch (e) {
 
 }
@@ -16,7 +18,7 @@ var apikey = '';
 if (apiKeys) {
   apikey = apiKeys.RALLY_API_KEY;
 } else {
-  apikey = process.env.RALLY_API_KEY;
+  memberMap = process.env.MEMBER_MAP;
 }
 
 var restApi = rally({
@@ -83,6 +85,12 @@ router.route('/defect/:ref')
       }
     });
   });
+
+router.route('/member-map/')
+.get(function(req,res){
+  res.json(memberMap);
+});
+
 app.use('/api', router);
 var port = process.env.PORT || 8080;
 app.listen(port, function () {

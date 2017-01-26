@@ -1,8 +1,8 @@
 'use strict';
 var _ = require('lodash');
-TasksController.$inject = ['tasksService', 'memberMap'];
+TasksController.$inject = ['tasksService'];
 
-function TasksController(tasksService, memberMap) {
+function TasksController(tasksService) {
   var vm = this;
   var t = TrelloPowerUp.iframe();
   var id;
