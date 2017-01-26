@@ -5,7 +5,7 @@ TasksController.$inject = ['tasksService'];
 function TasksController(tasksService) {
   var vm = this;
   var t = TrelloPowerUp.iframe();
-  var id;
+  var id, memberId;
 
   vm.noTasks = false;
 
@@ -14,7 +14,8 @@ function TasksController(tasksService) {
     vm.loader = false;
   }
 
-  function descCallback(data) {
+  function cardCallback(data) {
+    memberId = _.get(data, 'members[0].id');
     var success = function (response) {
       vm.loader = false;
       if (response.data.errors) {
@@ -32,10 +33,10 @@ function TasksController(tasksService) {
   }
 
   vm.loader = true;
-  // descCallback({
+  // cardCallback({
   //   desc: JSON.stringify({'id':'66163950240'})
   // });
-   t.card('desc').then(descCallback, error);
+  t.card('desc', 'members').then(cardCallback, error);
 
 
   var updateSuccess = function (response) {
@@ -75,23 +76,21 @@ function TasksController(tasksService) {
       }
     }
 
-    function membersCallback(data){
-      tasksService.memberMap().then(function(data){
-        var memberMap = JSON.parse(data.memberMap);
 
-        tasksService.addTask({
-          'Name': vm.newTask,
-          'Estimate': vm.estHours,
-          owner: {
-            'ObjectID': _.findKey(memberMap, data.members)
-          }
-        }, id).then(newTaskSuccess, error);
+    tasksService.memberMap().then(function (data) {
+      var memberMap = JSON.parse(data.memberMap);
 
-      });
+      tasksService.addTask({
+        'Name': vm.newTask,
+        'Estimate': vm.estHours,
+        owner: {
+          'ObjectID': _.findKey(memberMap, memberId);
+        }
+      }, id).then(newTaskSuccess, error);
 
-    }
+    });
+
     vm.loader = true;
-    t.card('members').then(membersCallback, error);
 
   }
 }
