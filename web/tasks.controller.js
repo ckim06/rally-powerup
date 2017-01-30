@@ -86,9 +86,8 @@ function TasksController(tasksService) {
       tasksService.addTask({
         'Name': vm.newTask,
         'Estimate': vm.estHours,
-        'Owner': {
-          'ObjectID': rallyOwnerId
-        }
+        'Owner':  '/user/' + rallyOwnerId
+
       }, id).then(newTaskSuccess, error);
 
     });
